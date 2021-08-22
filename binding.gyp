@@ -3,12 +3,17 @@
 		{
 			"target_name": "opencv",
 			"cflags!": ["-fno-exceptions"],
-			"cflags_cc!": ["-fno-exceptions"],
+			"cflags_cc!": ["-fno-exceptions", "-fno-rtti"],
 			"include_dirs": [
+				"/usr/include/opencv4",
 				"<!(node -p \"require('node-addon-api').include_dir\")",
 			],
+			"libraries": [
+				"-lopencv_core",
+			],
 			"sources": [
-				"src/hello.cpp",
+				"src/addon.cpp",
+				"src/core/Mat.cpp",
 			],
 			"xcode_settings": {
 				"GCC_ENABLE_CPP_EXCEPTIONS": "YES",
