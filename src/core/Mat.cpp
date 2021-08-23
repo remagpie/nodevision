@@ -1,10 +1,15 @@
 #include "Mat.h"
 
+#include <vector>
+
 Napi::FunctionReference Mat::constructor;
 
 void Mat::Init(Napi::Env env, Napi::Object exports) {
 	auto func = DefineClass(env, "Mat", {
 		InstanceMethod<&Mat::release>("release"),
+		InstanceMethod<&Mat::asBuffer>("asBuffer"),
+		InstanceMethod<&Mat::asJpg>("asJpg"),
+		InstanceMethod<&Mat::asPng>("asPng"),
 		InstanceMethod<&Mat::width>("width"),
 		InstanceMethod<&Mat::height>("height"),
 	});
@@ -38,6 +43,25 @@ void Mat::release(const Napi::CallbackInfo& info) {
 		this->mat.release();
 	}
 	this->alive = false;
+}
+
+Napi::Value Mat::asBuffer(const Napi::CallbackInfo& info) {
+	auto size = this->mat.rows * this->mat.cols * this->mat.elemSize();
+	return Napi::Buffer<uchar>::Copy(info.Env(), this->mat.data, size);
+}
+
+Napi::Value Mat::asPng(const Napi::CallbackInfo& info) {
+	auto result = std::vector<uchar>();
+	cv::imencode(".png", this->mat, result);
+
+	return Napi::Buffer<uchar>::Copy(info.Env(), result.data(), result.size());
+}
+
+Napi::Value Mat::asJpg(const Napi::CallbackInfo& info) {
+	auto result = std::vector<uchar>();
+	cv::imencode(".jpg", this->mat, result);
+
+	return Napi::Buffer<uchar>::Copy(info.Env(), result.data(), result.size());
 }
 
 Napi::Value Mat::width(const Napi::CallbackInfo& info) {
