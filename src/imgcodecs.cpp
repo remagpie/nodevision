@@ -4,8 +4,8 @@
 #include "core/Mat.h"
 
 void imgcodecs::Init(Napi::Env env, Napi::Object exports) {
-	exports.Set("imgcodecs_imread", Napi::Function::New(env, imgcodecs::imread));
-	exports.Set("imgcodecs_imwrite", Napi::Function::New(env, imgcodecs::imwrite));
+	exports.Set("imread", Napi::Function::New(env, imgcodecs::imread));
+	exports.Set("imwrite", Napi::Function::New(env, imgcodecs::imwrite));
 }
 
 Napi::Object imgcodecs::imread(const Napi::CallbackInfo& info) {

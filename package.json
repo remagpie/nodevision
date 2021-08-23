@@ -1,11 +1,13 @@
 {
-	"name": "node-opencv",
+	"name": "nodevision",
 	"version": "0.1.0",
 	"description": "OpenCV binding for Node.js",
 	"scripts": {},
 	"author": "Joonmo Yang <dev@remagpie.com>",
 	"license": "MIT",
 	"gypfile": true,
+	"main": "lib/nodevision.js",
+	"typings": "lib/index.d.ts",
 	"dependencies": {
 		"bindings": "^1.5.0",
 		"node-addon-api": "^4.0.0"
