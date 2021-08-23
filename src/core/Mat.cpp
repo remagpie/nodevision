@@ -3,7 +3,7 @@
 Napi::FunctionReference Mat::constructor;
 
 void Mat::Init(Napi::Env env, Napi::Object exports) {
-	Napi::Function func = DefineClass(env, "Mat", {
+	auto func = DefineClass(env, "Mat", {
 		InstanceMethod<&Mat::release>("release"),
 		InstanceMethod<&Mat::width>("width"),
 		InstanceMethod<&Mat::height>("height"),
