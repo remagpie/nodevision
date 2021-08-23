@@ -9,11 +9,13 @@
 				"<!(node -p \"require('node-addon-api').include_dir\")",
 			],
 			"libraries": [
+				"-lopencv_imgcodecs",
 				"-lopencv_core",
 			],
 			"sources": [
 				"src/addon.cpp",
 				"src/core/Mat.cpp",
+				"src/imgcodecs.cpp",
 			],
 			"xcode_settings": {
 				"GCC_ENABLE_CPP_EXCEPTIONS": "YES",
