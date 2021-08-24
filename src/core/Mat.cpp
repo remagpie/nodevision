@@ -20,6 +20,14 @@ void core::Mat::Init(Napi::Env env, Napi::Object exports) {
 	exports.Set("Mat", func);
 }
 
+Napi::Object core::Mat::New(cv::Mat& mat) {
+	auto result = core::Mat::constructor.New({});
+	core::Mat::Unwrap(result)->setMat(mat);
+
+	return result;
+}
+
+
 core::Mat::Mat(const Napi::CallbackInfo& info): Napi::ObjectWrap<core::Mat>(info) {
 	this->alive = true;
 }

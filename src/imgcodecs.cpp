@@ -15,10 +15,7 @@ Napi::Object imgcodecs::imread(const Napi::CallbackInfo& info) {
 	auto path = expectArg<Napi::String>(env, info, 0);
 	auto mat = cv::imread(path);
 
-	auto result = core::Mat::constructor.New({});
-	core::Mat::Unwrap(result)->setMat(mat);
-
-	return result;
+	return core::Mat::New(mat);
 }
 
 void imgcodecs::imwrite(const Napi::CallbackInfo& info) {

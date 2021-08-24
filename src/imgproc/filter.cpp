@@ -23,9 +23,7 @@ Napi::Object imgproc::filter::dilate(const Napi::CallbackInfo& info) {
 	auto output = cv::Mat();
 	cv::dilate(mat->mat, output, kernel);
 
-	auto result = core::Mat::constructor.New({});
-	core::Mat::Unwrap(result)->setMat(output);
-	return result;
+	return core::Mat::New(output);
 }
 
 Napi::Object imgproc::filter::erode(const Napi::CallbackInfo& info) {
@@ -42,7 +40,5 @@ Napi::Object imgproc::filter::erode(const Napi::CallbackInfo& info) {
 	auto output = cv::Mat();
 	cv::erode(mat->mat, output, kernel);
 
-	auto result = core::Mat::constructor.New({});
-	core::Mat::Unwrap(result)->setMat(output);
-	return result;
+	return core::Mat::New(output);
 }

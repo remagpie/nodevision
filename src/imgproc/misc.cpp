@@ -18,7 +18,5 @@ Napi::Object imgproc::misc::threshold(const Napi::CallbackInfo& info) {
 	auto output = cv::Mat();
 	cv::threshold(mat->mat, output, thresh, max, cv::THRESH_BINARY);
 
-	auto result = core::Mat::constructor.New({});
-	core::Mat::Unwrap(result)->setMat(output);
-	return result;
+	return core::Mat::New(output);
 }

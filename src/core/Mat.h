@@ -8,6 +8,7 @@ namespace core {
 	public:
 		static Napi::FunctionReference constructor;
 		static void Init(Napi::Env env, Napi::Object exports);
+		static Napi::Object New(cv::Mat& mat);
 
 	public:
 		cv::Mat mat;
