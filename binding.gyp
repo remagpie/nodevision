@@ -17,6 +17,7 @@
 				"src/core/Mat.cpp",
 				"src/imgcodecs.cpp",
 				"src/imgproc/filter.cpp",
+				"src/expect.cpp",
 				"src/main.cpp",
 			],
 			"xcode_settings": {

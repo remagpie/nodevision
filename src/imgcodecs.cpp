@@ -2,6 +2,7 @@
 
 #include <opencv2/opencv.hpp>
 #include "core/Mat.h"
+#include "expect.hpp"
 
 void imgcodecs::Init(Napi::Env env, Napi::Object exports) {
 	exports.Set("imread", Napi::Function::New(env, imgcodecs::imread));
@@ -9,7 +10,9 @@ void imgcodecs::Init(Napi::Env env, Napi::Object exports) {
 }
 
 Napi::Object imgcodecs::imread(const Napi::CallbackInfo& info) {
-	auto path = info[0].As<Napi::String>();
+	auto env = info.Env();
+
+	auto path = expectArg<Napi::String>(env, info, 0);
 	auto mat = cv::imread(path);
 
 	auto result = Mat::constructor.New({});
@@ -21,11 +24,8 @@ Napi::Object imgcodecs::imread(const Napi::CallbackInfo& info) {
 void imgcodecs::imwrite(const Napi::CallbackInfo& info) {
 	auto env = info.Env();
 
-	if (info.Length() != 2 || !info[0].IsString() || !info[1].IsObject()) {
-		Napi::TypeError::New(env, "Mat expected").ThrowAsJavaScriptException();
-	}
+	auto path = expectArg<Napi::String>(env, info, 0);
+	auto mat = Mat::Unwrap(expectArg<Napi::Object>(env, info, 1));
 
-	auto path = info[0].As<Napi::String>();
-	auto mat = Mat::Unwrap(info[1].As<Napi::Object>());
 	cv::imwrite(path, mat->mat);
 }
