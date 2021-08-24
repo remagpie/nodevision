@@ -6,6 +6,7 @@
 			"cflags_cc!": ["-fno-exceptions", "-fno-rtti"],
 			"include_dirs": [
 				"/usr/include/opencv4",
+				"src",
 				"<!(node -p \"require('node-addon-api').include_dir\")",
 			],
 			"libraries": [
@@ -15,6 +16,7 @@
 			"sources": [
 				"src/core/Mat.cpp",
 				"src/imgcodecs.cpp",
+				"src/imgproc/filter.cpp",
 				"src/main.cpp",
 			],
 			"xcode_settings": {
