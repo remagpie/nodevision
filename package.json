@@ -1,12 +1,12 @@
 {
-	"name": "nodevision",
+	"name": "novis",
 	"version": "0.1.0",
 	"description": "OpenCV binding for Node.js",
 	"scripts": {},
 	"author": "Joonmo Yang <dev@remagpie.com>",
 	"license": "MIT",
 	"gypfile": true,
-	"main": "lib/nodevision.js",
+	"main": "lib/novis.js",
 	"typings": "lib/index.d.ts",
 	"dependencies": {
 		"bindings": "^1.5.0",

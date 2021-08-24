@@ -1,7 +1,7 @@
 {
 	"targets": [
 		{
-			"target_name": "nodevision",
+			"target_name": "novis",
 			"cflags!": ["-fno-exceptions"],
 			"cflags_cc!": ["-fno-exceptions", "-fno-rtti"],
 			"include_dirs": [
