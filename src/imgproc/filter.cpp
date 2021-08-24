@@ -12,7 +12,7 @@ void imgproc::filter::Init(Napi::Env env, Napi::Object exports) {
 Napi::Object imgproc::filter::dilate(const Napi::CallbackInfo& info) {
 	auto env = info.Env();
 
-	auto mat = Mat::Unwrap(expectArg<Napi::Object>(env, info, 0));
+	auto mat = expectArg<Mat*>(env, info, 0);
 	auto props = expectArg<Napi::Object>(env, info, 1);
 
 	auto shape = expectField<Napi::Number>(env, props, "props", "shape");
@@ -31,7 +31,7 @@ Napi::Object imgproc::filter::dilate(const Napi::CallbackInfo& info) {
 Napi::Object imgproc::filter::erode(const Napi::CallbackInfo& info) {
 	auto env = info.Env();
 
-	auto mat = Mat::Unwrap(expectArg<Napi::Object>(env, info, 0));
+	auto mat = expectArg<Mat*>(env, info, 0);
 	auto props = expectArg<Napi::Object>(env, info, 1);
 
 	auto shape = expectField<Napi::Number>(env, props, "props", "shape");
