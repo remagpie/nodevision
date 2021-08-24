@@ -8,6 +8,9 @@ template <typename T>
 T expectArg(Napi::Env env, const Napi::CallbackInfo& info, size_t index) = delete;
 
 template<>
+Napi::Number expectArg(Napi::Env env, const Napi::CallbackInfo& info, size_t index);
+
+template<>
 Napi::String expectArg(Napi::Env env, const Napi::CallbackInfo& info, size_t index);
 
 template<>

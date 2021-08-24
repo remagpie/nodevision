@@ -3,6 +3,17 @@
 #include "expect.hpp"
 
 template<>
+Napi::Number expectArg(Napi::Env env, const Napi::CallbackInfo& info, size_t index) {
+	if (info.Length() <= index || !info[index].IsNumber()) {
+		std::ostringstream message;
+		message << index << "th argument is not a Number";
+		Napi::TypeError::New(env, message.str()).ThrowAsJavaScriptException();
+	}
+
+	return info[index].As<Napi::Number>();
+}
+
+template<>
 Napi::String expectArg(Napi::Env env, const Napi::CallbackInfo& info, size_t index) {
 	if (info.Length() <= index || !info[index].IsString()) {
 		std::ostringstream message;
