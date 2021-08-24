@@ -19,7 +19,7 @@ template<>
 Napi::Object expectArg(Napi::Env env, const Napi::CallbackInfo& info, size_t index);
 
 template<>
-Mat* expectArg(Napi::Env env, const Napi::CallbackInfo& info, size_t index);
+core::Mat* expectArg(Napi::Env env, const Napi::CallbackInfo& info, size_t index);
 
 template <typename T>
 T expectField(Napi::Env env, Napi::Object& obj, const char* name, const char* key) = delete;

@@ -12,7 +12,7 @@ void imgproc::filter::Init(Napi::Env env, Napi::Object exports) {
 Napi::Object imgproc::filter::dilate(const Napi::CallbackInfo& info) {
 	auto env = info.Env();
 
-	auto mat = expectArg<Mat*>(env, info, 0);
+	auto mat = expectArg<core::Mat*>(env, info, 0);
 	auto props = expectArg<Napi::Object>(env, info, 1);
 
 	auto shape = expectField<Napi::Number>(env, props, "props", "shape");
@@ -23,15 +23,15 @@ Napi::Object imgproc::filter::dilate(const Napi::CallbackInfo& info) {
 	auto output = cv::Mat();
 	cv::dilate(mat->mat, output, kernel);
 
-	auto result = Mat::constructor.New({});
-	Mat::Unwrap(result)->setMat(output);
+	auto result = core::Mat::constructor.New({});
+	core::Mat::Unwrap(result)->setMat(output);
 	return result;
 }
 
 Napi::Object imgproc::filter::erode(const Napi::CallbackInfo& info) {
 	auto env = info.Env();
 
-	auto mat = expectArg<Mat*>(env, info, 0);
+	auto mat = expectArg<core::Mat*>(env, info, 0);
 	auto props = expectArg<Napi::Object>(env, info, 1);
 
 	auto shape = expectField<Napi::Number>(env, props, "props", "shape");
@@ -42,7 +42,7 @@ Napi::Object imgproc::filter::erode(const Napi::CallbackInfo& info) {
 	auto output = cv::Mat();
 	cv::erode(mat->mat, output, kernel);
 
-	auto result = Mat::constructor.New({});
-	Mat::Unwrap(result)->setMat(output);
+	auto result = core::Mat::constructor.New({});
+	core::Mat::Unwrap(result)->setMat(output);
 	return result;
 }

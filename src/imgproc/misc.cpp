@@ -11,14 +11,14 @@ void imgproc::misc::Init(Napi::Env env, Napi::Object exports) {
 Napi::Object imgproc::misc::threshold(const Napi::CallbackInfo& info) {
 	auto env = info.Env();
 
-	auto mat = expectArg<Mat*>(env, info, 0);
+	auto mat = expectArg<core::Mat*>(env, info, 0);
 	auto thresh = expectArg<Napi::Number>(env, info, 1);
 	auto max = expectArg<Napi::Number>(env, info, 2);
 
 	auto output = cv::Mat();
 	cv::threshold(mat->mat, output, thresh, max, cv::THRESH_BINARY);
 
-	auto result = Mat::constructor.New({});
-	Mat::Unwrap(result)->setMat(output);
+	auto result = core::Mat::constructor.New({});
+	core::Mat::Unwrap(result)->setMat(output);
 	return result;
 }

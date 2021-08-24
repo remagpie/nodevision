@@ -5,7 +5,7 @@
 #include "imgproc/misc.h"
 
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
-	Mat::Init(env, exports);
+	core::Mat::Init(env, exports);
 	imgcodecs::Init(env, exports);
 	imgproc::filter::Init(env, exports);
 	imgproc::misc::Init(env, exports);
