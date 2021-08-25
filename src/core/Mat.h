@@ -22,9 +22,6 @@ namespace core {
 		void setMat(cv::Mat mat);
 		void release(const Napi::CallbackInfo& info);
 
-		Napi::Value asBuffer(const Napi::CallbackInfo& info);
-		Napi::Value asJpg(const Napi::CallbackInfo& info);
-		Napi::Value asPng(const Napi::CallbackInfo& info);
 		Napi::Value width(const Napi::CallbackInfo& info);
 		Napi::Value height(const Napi::CallbackInfo& info);
 	};

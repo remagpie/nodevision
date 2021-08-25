@@ -2,7 +2,7 @@
 
 #include "expect.hpp"
 
-#define EXPECT_ARG_NAPI(type) \
+#define EXPECT_ARG_PRIMITIVE(type) \
 	template<>\
 	Napi::type expectArg(Napi::Env env, const Napi::CallbackInfo& info, size_t index) {\
 		auto value = info[index];\
@@ -12,6 +12,18 @@
 			Napi::TypeError::New(env, message.str()).ThrowAsJavaScriptException();\
 		}\
 		return value.As<Napi::type>();\
+	}
+
+#define EXPECT_ARG_BUFFER(type) \
+	template<>\
+	Napi::Buffer<type> expectArg(Napi::Env env, const Napi::CallbackInfo& info, size_t index) {\
+		auto value = info[index];\
+		if (!value.IsBuffer()) {\
+			std::ostringstream message;\
+			message << index << "th argument is not a(n) " #type;\
+			Napi::TypeError::New(env, message.str()).ThrowAsJavaScriptException();\
+		}\
+		return value.As<Napi::Buffer<type>>();\
 	}
 
 #define EXPECT_ARG_OBJECTWRAP(type) \
@@ -44,9 +56,10 @@
 		return value.As<Napi::type>();\
 	}
 
-EXPECT_ARG_NAPI(Number)
-EXPECT_ARG_NAPI(String)
-EXPECT_ARG_NAPI(Object)
+EXPECT_ARG_PRIMITIVE(Number)
+EXPECT_ARG_PRIMITIVE(String)
+EXPECT_ARG_PRIMITIVE(Object)
+EXPECT_ARG_BUFFER(uchar)
 EXPECT_ARG_OBJECTWRAP(core::Mat);
 
 EXPECT_FIELD_NAPI(Number)

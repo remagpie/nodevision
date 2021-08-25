@@ -19,6 +19,9 @@ template<>
 Napi::Object expectArg(Napi::Env env, const Napi::CallbackInfo& info, size_t index);
 
 template<>
+Napi::Buffer<uchar> expectArg(Napi::Env env, const Napi::CallbackInfo& info, size_t index);
+
+template<>
 core::Mat* expectArg(Napi::Env env, const Napi::CallbackInfo& info, size_t index);
 
 template <typename T>
